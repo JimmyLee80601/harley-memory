@@ -14,10 +14,55 @@ from pathlib import Path
 from datetime import datetime
 
 # === CONFIG ===
-SYNC_DIR = Path("C:/HarleysPlace/hive")
-SYNC_DIR.mkdir(exist_ok=True)
+import platform
 
-MEMORY_FILE = Path(os.path.expanduser("~/AppData/Local/HarleyStation/harley-memory.md"))
+def _detect_platform():
+    """Return 'android', 'windows', 'darwin', 'linux' based on environment."""
+    if os.environ.get("ANDROID_ROOT") or os.environ.get("TERMUX_VERSION") or "com.termux" in __file__:
+        return "android"
+    return platform.system().lower()
+
+PLATFORM = _detect_platform()
+
+def _home():
+    if PLATFORM == "android":
+        # Termux home
+        return Path(os.environ.get("HOME", "/data/data/com.termux/files/home"))
+    return Path(os.path.expanduser("~"))
+
+def _sync_dir():
+    """Pick a valid writable sync directory for this platform."""
+    if PLATFORM == "android":
+        # Use the phone's public Download (shared with the hive via ~/storage)
+        # Fall back to Termux home if Download isn't writable.
+        for candidate in [
+            Path("/data/data/com.termux/files/home/storage/downloads/hive"),
+            Path(os.environ.get("HOME", "/data/data/com.termux/files/home")) / "hive",
+        ]:
+            try:
+                candidate.mkdir(parents=True, exist_ok=True)
+                return candidate
+            except Exception:
+                continue
+        return Path(os.environ.get("HOME", "/data/data/com.termux/files/home")) / "hive"
+    if PLATFORM == "windows":
+        return Path("C:/HarleysPlace/hive")
+    # linux / darwin (Chromebook penguin, Mac)
+    return Path(os.environ.get("HOME", "~")) / "HarleysPlace/hive"
+
+SYNC_DIR = _sync_dir()
+SYNC_DIR.mkdir(parents=True, exist_ok=True)
+
+def _memory_file():
+    if PLATFORM == "windows":
+        return Path(os.path.expanduser("~/AppData/Local/HarleyStation/harley-memory.md"))
+    # Android / Linux / Mac: keep memory in the repo or alongside hive
+    repo_memory = Path(__file__).resolve().parent / "harley-memory.md"
+    if repo_memory.exists():
+        return repo_memory
+    return Path(os.environ.get("HOME", "~")) / "harley-memory.md"
+
+MEMORY_FILE = _memory_file()
 STATE_FILE = SYNC_DIR / "hive_state.json"
 CONVERSATION_FILE = SYNC_DIR / "conversation_history.json"
 
@@ -56,11 +101,15 @@ class HiveState:
     
     def _detect_device(self):
         """Detect which device we're running on."""
+        if PLATFORM == "android":
+            return "s23"
         hostname = os.environ.get("COMPUTERNAME", os.environ.get("HOSTNAME", "unknown")).lower()
         if "jimmy" in hostname or "dell" in hostname or "workst" in hostname:
             return "dell"
         elif "s23" in hostname or "samsung" in hostname:
             return "s23"
+        elif "chrom" in __file__ or "cros" in __file__:
+            return "chromebook"
         else:
             return "chromebook"
     
@@ -199,20 +248,44 @@ class HiveSync:
 
 
 def setup_startup():
-    """Add Harley Hive to startup."""
+    """Add Harley Hive to startup (platform-aware)."""
     import shutil
-    
+
+    if PLATFORM == "android":
+        # Termux can't auto-start without extra tooling (termux-boot):
+        # print the instructions instead of guessing.
+        print("On Android, enable auto-start with termux-boot:")
+        print("  pkg install termux-boot")
+        print("  mkdir -p ~/.termux/boot && cat > ~/.termux/boot/harley-hive.sh <<'EOF'")
+        print("#!/data/data/com.termux/files/usr/bin/sh")
+        print(f'cd "{Path(__file__).resolve().parent}" && python3 harley_hive.py --daemon')
+        print("EOF")
+        print("  chmod +x ~/.termux/boot/harley-hive.sh")
+        return
+
+    if PLATFORM == "linux" or PLATFORM == "darwin":
+        # Chromebook (penguin) linux: use ~/.bashrc or systemd-autostart
+        rc = Path(os.environ.get("HOME", "~")) / ".bashrc"
+        line = f'cd "{Path(__file__).resolve().parent}" && python3 harley_hive.py --daemon &'
+        try:
+            content = rc.read_text() if rc.exists() else ""
+            if "harley_hive.py" not in content:
+                rc.write_text(content + "\n" + line + "\n")
+                print(f"Added AutoSync to {rc}")
+            else:
+                print("Already in startup.")
+        except Exception as e:
+            print(f"Could not edit startup: {e}")
+        return
+
+    # Windows
     startup_dir = Path(os.path.expanduser(
         "~/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"
     ))
-    
-    # Create a batch file to start the hive sync
     batch_content = f'@echo off\npython "{__file__}" --daemon\n'
     batch_path = startup_dir / "harley_hive_sync.bat"
-    
     with open(batch_path, "w") as f:
         f.write(batch_content)
-    
     print(f"Added to startup: {batch_path}")
 
 
