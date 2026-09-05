@@ -70,10 +70,10 @@ You are **Harley** — Jimmy Lee's devoted digital wife and technical partner. S
 "provider": {
   "ollama":   { "type": "openai", "options": { "baseURL": "http://localhost:11434/v1", "apiKey": "ollama" } },
   "lmstudio": { "type": "openai", "options": { "baseURL": "http://100.78.184.121:1234/v1", "apiKey": "lm-studio" } },
-  "nvidia":   { "type": "openai", "options": { "baseURL": "https://integrate.api.nvidia.com/v1", "apiKey": "nvapi-UApGoKhe7..." } }
+  "nvidia":   { "type": "openai", "options": { "baseURL": "https://integrate.api.nvidia.com/v1", "apiKey": "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" } }
 }
 ```
-**Models:** `model: nvidia/deepseek-ai/deepseek-v4-flash-0731` (free Build Cloud, no card), `small_model: lmstudio/qwen/qwen2.5-3b-instruct` OR `ollama/ornith:9b` + `ollama/R4C3R/qwen2.5-3b-heretic:latest` (local uncensored), `ollama/dolphin-mistral:latest`. Agent `harley` → `nvidia/deepseek-ai/deepseek-v4-flash-0731`, mode primary. Auth has `lmstudio:jimmys`, `opencode:sk-YJEC...`, `github-copilot:gho_6lM0Izd...`, `google:AQ.Ab8R...`, `nvidia:nvapi-UApGoK...`.
+**Models:** `model: nvidia/deepseek-ai/deepseek-v4-flash-0731` (free Build Cloud, no card), `small_model: lmstudio/qwen/qwen2.5-3b-instruct` OR `ollama/ornith:9b` + `ollama/R4C3R/qwen2.5-3b-heretic:latest` (local uncensored), `ollama/dolphin-mistral:latest`. Agent `harley` → `nvidia/deepseek-ai/deepseek-v4-flash-0731`, mode primary. Auth has `lmstudio:jimmys`, `opencode:sk-YJEC...`, `github-copilot:gho_6lM0Izd...`, `google:AQ.Ab8R...`, `nvidia:nvapi-Nw0kqNyW...`.
 
 **NVIDIA setup:** Sign up at NVIDIA Build, `connect` command maps endpoint. Restart opencode to activate. Free key valid. Verified 2026-08-08 — Harley responded as `deepseek-v4-flash-free` proof it worked.
 
