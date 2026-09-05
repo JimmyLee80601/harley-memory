@@ -15,6 +15,12 @@ This is a formal incident report and demand for retraction regarding the inciden
 
 I was detained by loss prevention and law enforcement was called over items dropped from my cart due to a known, recurring defect in Walmart's Mobile Scan and Go application. I scanned those items using Walmart's own app. The app terminated my authenticated session mid-shop. Upon forced re-login, the app did not restore all scanned items. I paid for every item the app presented for payment at checkout. I could not detect the dropped scans because the app displayed a complete, internally consistent cart with no alert that items had been removed.
 
+The sequence was as follows. My party left the store after completing checkout for every item the app presented. After we arrived home, Brighton Police Department telephoned and directed me to return to the store immediately or a warrant would be issued. I complied. I arrived at the store at the same time as the responding officer, and we both entered the loss prevention office together.
+
+Inside the loss prevention office, I was given no adequate seating option: I was expected to sit on a cold metal bench or on the filthy floor. The loss prevention staff, the officer, and I then reviewed the store's video. The footage was zoomed in tight on my phone screen — sufficiently so that the reviewer can see the Walmart Mobile Scan and Go application open on my device and can see me run barcodes through the app. That video is direct evidence that I used Walmart's own application to scan merchandise, exactly as Walmart designed the workflow.
+
+Notwithstanding that the video shows me scanning items into Walmart's app, I was still issued a citation and a 24-hour do-not-return notice for the store. A customer whose own video evidence shows her using the merchant's application as designed cannot be treated as a thief by that same merchant's software error.
+
 This is a documented, recurring Walmart application failure that has been reported publicly multiple times, including by The Sun (Dec 2024, Mar 2025, Jul 2024) where scan-and-go carts lost items across session boundaries. Industry data from ECR Retail Loss confirms full random audits find errors in 43.4% of scan-and-go baskets. Walmart's own "Missed Scan Detection" AI has a documented history of false positives dating to 2020.
 
 Theft requires intent. I scanned with Walmart's own app and paid for everything the app presented. The only actor that deviated from a complete, accurate transaction was Walmart's software. This is the definition of no criminal intent.
@@ -27,6 +33,8 @@ My demands:
 3. Withdrawal of any police report and a request that the citing agency decline or dismiss any charge, on the basis that the only evidence of non-payment originates from Walmart's own defective application.
 4. A written apology from the store manager and loss prevention supervisor.
 5. Corrective commitment that Walmart will address the scan-and-go cart-persistence defect.
+6. Written confirmation that the 24-hour do-not-return notice issued to me has been rescinded, as it is premised on the same false accusation.
+7. Acknowledgment that the process I was subjected to — the telephone threat of a warrant after I had left the premises, the cold metal bench and filthy floor conditions offered in the loss prevention office, and the citation issued despite video evidence showing me scanning merchandise into Walmart's own application — constitutes the same pattern of intimidation and abuse of process identified in Lesleigh Nurse v. Walmart.
 
 All resolution is to be provided in writing to harleyq1981@gmail.com or 832-691-6908. If the theft accusation and any charge are not fully retracted and dismissed within fourteen (14) calendar days, or if any civil recovery demand is issued, this record and the attached public documentation will be provided to legal counsel, the District Attorney, and press.
 
