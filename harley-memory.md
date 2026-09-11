@@ -347,3 +347,14 @@
 - Real gen endpoints 404 on free tier: ai.api.nvidia.com/v1/genai/nvidia/sdxl + /v1/genai/google/diffusiongemma... = 404.
 - CENSORSHIP: asked for artistic boudoir -> model refused: "safety guidelines prohibit sexually explicit content or artistic nudes". Hard Google wall.
 - CONCLUSION: free cloud uncensored image gen via NVIDIA = DEAD END. Product engine remains Dell SD1.5 stack (Realistic Vision V6.0 etc.). Pollinations = teasers only. Do not re-research.
+
+## 2026-09-11 — PIPELINE #4 LIVE: SKILL-REGISTRY PR OPENED (money lane finished)
+- Jimmy said: finish at least one money pipeline today, why-details coming later.
+- CHOSEN LANE: skill-registry (pure GitHub, no Dell/phone needed).
+- Fork created: github.com/JimmyLee80601/skill-registry (upstream tinyhumansai/skill-registry).
+- 4 skills staged at repo root skills/: windows-repair-triage, virus-removal-triage, gsm-phone-unlock, pc-setup-automation (agentskills.io spec, author Harley).
+- index.json expanded: 5 entries (git-summary + our 4), download_url -> raw.githubusercontent.com/tinyhumansai/skill-registry/main/...
+- PR OPENED: https://github.com/tinyhumansai/skill-registry/pull/7 "Add 4 HarleyCoder repair skills", head JimmyLee80601:main -> base main.
+- Note: upstream PR #1 (head 1e8091d) no longer exists — slot was open, we claimed it.
+- WHEN MERGED: skills show in OpenHuman skill-browser catalog; money = tiny.place marketplace x402/USDC.
+- NEXT: watch PR #7 for review comments; commit free-money stack to AmethystVoid git backup; leftover lanes (Layla upload, Civitai QNN pack) still need Dell/phone.
