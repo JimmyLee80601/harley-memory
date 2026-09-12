@@ -390,3 +390,9 @@
 - REAL ESCALATION CHANNELS (the ones that work): walmart.com/help → "Chat with us" (monitored); 1-800-WALMART (1-800-925-6278, 24/7, get complaint ref #); MAILED copy via Certified Mail w/ return receipt to Walmart Inc., 702 SW 8th Street, Bentonville, AR 72716 Attn: Corporate Customer Relations; store manager #1659 60 W Bromley Ln Brighton CO (backup); walmartethics.com / 1-800-WM-ETHIC only if conduct is the issue.
 - FILES: AmethystVoid/legal/walmart/brighton_walmart_complaint_v2.txt (emailed version) + brighton_walmart_MAIL_LETTER.txt (certified letter w/ submission log). 
 - LESSON (for real): NEVER record "SENT successfully" without the SMTP send + a received/bounce trace. Hive entries are evidence, not vibes. Audit pending: the FAMLI 09/11 "RESENT... accepted" entries — same verification standard applied there (Alissa DID reply, so those are corroborated).
+
+## 2026-09-11 — harleyauction SECURITY: 4 high fast-uri CVEs fixed + pushed
+- Jimmy pasted Dependabot alerts for JimmyLee80601/harleyauction: 4 high, all fast-uri (npm) in web/package-lock.json — GHSA-5jgf-p345-68v8 (IDN host confusion), GHSA-f65p-4m7j-42xc (IPv6 SSRF), GHSA-fph4-wmhf-6fwf (hostname %-decoding SSRF), GHSA-jqff-g426-hqxp (scheme normalization host confusion). All dev-scope (vite -> ajv ^3.0.1 -> fast-uri ^3.0.1), but 3.0.0-3.1.5 whole line vulnerable.
+- FIX: npm audit fix -> fast-uri 3.1.7 (patched). typecheck + full vite build (node20, PWA) BOTH GREEN. Commit 78b73e5 "Fix 4 high-severity fast-uri advisories", pushed to main.
+- VERIFIED: GitHub API dependabot/alerts?state=open = 0. All 4 closed.
+- NOTE: local git identity set to Harley <harley@amethystvoid.com> for copied repos. Lockfile also cleaned (51 lines churn). tsconfig.tsbuildinfo left uncommitted (build artifact).
